@@ -6,7 +6,7 @@ A program for calculating common checksums,
 
 ![GHash](docs/images/ghash-demo-01.png)
 
-![GHash](docs/images/ghash-demo-01.webm)
+[ghash-demo-01.webm](https://user-images.githubusercontent.com/59538991/207211152-f384ac89-fbe2-46a8-a0e7-30f022fc55ba.webm)
 
 Algorithms:
 

@@ -193,9 +193,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         algo = self.tab_widget.tabText(self.tab_widget.currentIndex())
 
         if algo.lower() == "all":
-            clipboard.setText(json.dumps(self.dic_of_hashes))
+            clipboard.setText(json.dumps(self.dic_of_hashes, indent=4))
         else:
-            clipboard.setText(json.dumps(self.dic_of_hashes[algo]))
+            clipboard.setText(json.dumps(self.dic_of_hashes[algo], indent=4))
 
     @Slot()
     def to_clipboard_tsv(self):

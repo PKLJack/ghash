@@ -10,6 +10,16 @@
             },
             "group": "build",
             "options": {"cwd": "${workspaceFolder}/ghash"}
+        },
+        {
+            "label": "Build Wheel",
+            "command": "poetry build --format wheel",
+            "type": "shell",
+            "presentation": {
+                "reveal": "always"
+            },
+            "group": "build",
+            "options": {"cwd": "${workspaceFolder}"}
         }
     ]
 }

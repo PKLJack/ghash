@@ -12,6 +12,7 @@ from PySide6.QtWidgets import (
     QMessageBox,
     QTableView,
     QWidget,
+    QFileDialog,
 )
 
 from .hasher import FileHasher
@@ -89,6 +90,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.button_copy_json.clicked.connect(self.to_clipboard_json)
         self.button_copy_tsv.clicked.connect(self.to_clipboard_tsv)
         self.button_clear.clicked.connect(self.clear_tabs)
+        self.button_choose_files.clicked.connect(self.handle_button_choose_files)
 
     # def resizeEvent(self, event):
     #     """Intercept resize event"""
@@ -96,11 +98,25 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     #     return super().resizeEvent(event)
 
     @Slot()
+    def handle_button_choose_files(self):
+        """ """
+        QMessageBox.information(
+            self,
+            "Drag & Drop is much better!",
+            "Drag & Drop Files can handle multiple folders and files.",
+        )
+
+        files, _ = QFileDialog.getOpenFileNames(self, "Choose Files")
+        files = [Path(x).resolve() for x in files]
+
+        self.handle_accepted(files)
+
+    @Slot()
     def handle_calculate(self):
         """ """
         self.run_hash()
 
-    @Slot()
+    @Slot(list)
     def handle_accepted(self, filepaths: list[Path]):
         """ """
         self.filepaths = filepaths

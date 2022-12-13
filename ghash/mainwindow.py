@@ -88,6 +88,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.button_calculate.clicked.connect(self.handle_calculate)
         self.button_copy_json.clicked.connect(self.to_clipboard_json)
         self.button_copy_tsv.clicked.connect(self.to_clipboard_tsv)
+        self.button_clear.clicked.connect(self.clear_tabs)
 
     # def resizeEvent(self, event):
     #     """Intercept resize event"""
@@ -134,8 +135,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.dic_of_hashes = retval
         self.spawn_tabs(self.dic_of_hashes)
 
+    def clear_tabs(self):
+        """Remove all tabs except first tab and clear first tab."""
+        for i in range(self.tab_widget.count() - 1, 0, -1):
+            self.tab_widget.widget(i).deleteLater()
+            self.tab_widget.removeTab(i)
+
+            try:
+                self.table_model_all.clear_all()
+            except Exception as e:
+                print(e)
+                pass  # TODO: rewrite
+
     def spawn_tabs(self, dic: dict[str, dict[str, str]]):
-        """Refresh the TabWidget"""
+        """Refresh the TabWidget."""
+        self.clear_tabs()
 
         list1 = dict_unnest(dic, keep_algo=True)
 

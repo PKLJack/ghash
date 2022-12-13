@@ -33,3 +33,6 @@ class TableModel(QAbstractTableModel):
                     return [self.column_names[0], self.column_names[2]][section]
 
                 return self.column_names[section]
+
+    def clear_all(self):
+        self._data = [[]]

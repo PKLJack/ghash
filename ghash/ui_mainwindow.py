@@ -34,6 +34,10 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.horizontalLayout_3 = QHBoxLayout()
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_3.addItem(self.horizontalSpacer_4)
+
         self.groupbox_sha = QGroupBox(self.centralwidget)
         self.groupbox_sha.setObjectName(u"groupbox_sha")
         self.verticalLayout = QVBoxLayout(self.groupbox_sha)
@@ -65,6 +69,10 @@ class Ui_MainWindow(object):
 
 
         self.horizontalLayout_3.addWidget(self.groupbox_sha)
+
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_3.addItem(self.horizontalSpacer_3)
 
         self.groupbox_others = QGroupBox(self.centralwidget)
         self.groupbox_others.setObjectName(u"groupbox_others")
@@ -127,6 +135,9 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3.addWidget(self.widget)
 
+        self.horizontalLayout_3.setStretch(1, 1)
+        self.horizontalLayout_3.setStretch(3, 1)
+        self.horizontalLayout_3.setStretch(6, 2)
 
         self.verticalLayout_4.addLayout(self.horizontalLayout_3)
 

@@ -121,10 +121,29 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 continue
 
             retval[algo] = dict()
+            denied_fp = []
 
             for fp in self.filepaths:
+
+                if fp.is_dir():
+                    continue
+
                 hasher = FileHasher(file_path=fp, algorithm=algo)
-                retval[algo][str(fp)] = hasher.run()
+
+                try:
+                    retval[algo][str(fp)] = hasher.run()
+                except PermissionError as e:
+                    denied_fp.append(str(fp))
+
+            # Show skipped files
+            if denied_fp:
+                QMessageBox.warning(
+                    self,
+                    "Permission denied",
+                    "Skipping {0} files.\nCannot open files:\n {1}".format(
+                        len(denied_fp), "\n".join(denied_fp)
+                    ),
+                )
 
         if not retval:
             QMessageBox.information(
